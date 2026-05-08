@@ -34,7 +34,14 @@ async def download(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await msg.delete()
 
+async def start(update, context):
+    await update.message.reply_text(
+        "Kirim link TikTok/Twitter untuk download video."
+    )
+
 app = ApplicationBuilder().token(BOT_TOKEN).build()
+
+app.add_handler(CommandHandler("start", start))
 
 app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, download))
 
